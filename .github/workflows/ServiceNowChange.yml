@@ -6,9 +6,11 @@ name: CI/CD Github Workflow
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: 
+      - "main"
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      - "main"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,21 +24,22 @@ jobs:
     steps:
       - name: "Build"
         run: echo "Build"
-  Test:
 
+  Test:
     runs-on: ubuntu-latest
     steps:
       - name: "Test Step of the workflow/pipeline"
         run: echo "Test Step"
+
   Deploy:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: ServiceNow DevOps Change Automation
-      uses: ServiceNow/servicenow-devops-change@v4.0.0
-      with:
+        uses: ServiceNow/servicenow-devops-change@v4.0.0
+        with:
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          #devops-integration-user-name: # optional
-          #devops-integration-user-password: # optional
+          # devops-integration-user-name: # optional
+          # devops-integration-user-password: # optional
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Display Name of the Job
@@ -48,13 +51,27 @@ jobs:
           # The time in seconds to wait between trying the API.
           interval: # optional, default is 100
           # The customized inputs to create change with the requested details.
-          change-request: '{"setCloseCode":"true","autoCloseChange":true,"attributes":{"requested_by": {"email": "abel.tuter@example.com"},"assignment_group":"b85d44954a3623120004689b2d5dd60a","short_description":"Automated Software Deployment","description":"Automated Software Deployment.","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
-          # The max. time in seconds to wait until change created.
+          change-request: |
+            {
+              "setCloseCode": "true",
+              "autoCloseChange": true,
+              "attributes": {
+                "requested_by": {
+                  "email": "abel.tuter@example.com"
+                },
+                "assignment_group": "b85d44954a3623120004689b2d5dd60a",
+                "short_description": "Automated Software Deployment",
+                "description": "Automated Software Deployment.",
+                "implementation_plan": "Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.",
+                "backout_plan": "When software fails in production, the previous software release will be re-deployed.",
+                "test_plan": "Testing if the software was successfully deployed"
+              }
+            }
+          # The max. time in seconds to wait until change is created.
           changeCreationTimeOut: # optional, default is 3600
-          # This value will be used to resume or abort the pipeline if the change is not created within the mentioned time period in changeCreationTimeOut. 
+          # This value will be used to resume or abort the pipeline if the change is not created within the mentioned time period in changeCreationTimeOut.
           abortOnChangeCreationFailure: # optional, default is true
           # This value will be used to resume or abort the pipeline after a timeout has occurred in case a change step is still in a pending state.
           abortOnChangeStepTimeout: # optional, default is true
           # The customized inputs to process deployment gate job related change.
           deployment-gate: # optional
-                
