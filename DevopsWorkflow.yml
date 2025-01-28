@@ -1,4 +1,4 @@
-name: BlankWorkflow
+name: CICD GitHub Workflow
 on:
   workflow_dispatch:
 jobs:
