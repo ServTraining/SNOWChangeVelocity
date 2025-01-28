@@ -19,7 +19,7 @@ jobs:
   Build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - name: "Build"
         run: echo "Build"
   Test:
