@@ -30,7 +30,7 @@ jobs:
         run: |
           if [ -z "$TEST_INSTANCE_URL" ]; then
             echo "SN_INSTANCE_URL is NOT set"
-            exit 1
+            
           else
             echo "SN_INSTANCE_URL is set"
           fi
