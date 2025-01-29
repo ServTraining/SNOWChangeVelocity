@@ -41,7 +41,7 @@ jobs:
           # devops-integration-user-name: # optional
           # devops-integration-user-password: # optional
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          tool-id: ${{ secrets.SN_TOOL_ID }}
           # Display Name of the Job
           job-name: 'ProdDeploy'
           # Github Context
