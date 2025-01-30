@@ -5,9 +5,8 @@ name: gitflow3
 on:
   workflow_dispatch:
 
-
 jobs:
- 
+
   build:
     name: build
     runs-on: ubuntu-latest
@@ -17,19 +16,19 @@ jobs:
 
   test:
     name: test
-    needs: build  
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: "test"
         run: echo "Hello, test!"
+
   ProdDeploy:
-    
+    name: 'ProdDeploy'
     needs: test
     runs-on: ubuntu-latest
-    name: 'ProdDeploy'
     steps:
       - name: ServiceNow Change
-        uses: ServiceNow/servicenow-devops-change@v3.0.0
+        uses: ServiceNow/servicenow-devops-change@v4.0.0
         with:
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           # ServiceNow Instance URL
@@ -41,8 +40,8 @@ jobs:
           # Display Name of the Job
           job-name: 'ProdDeploy'
           change-request: '{"attributes":{"requested_by":{"name": "Test User"},"assignment_group":{"name": "Change Approval Team"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "2023-09-07 11:59:59","end_date": "2023-09-09 11:59:59"}}'
-          # You can specify the requested_by attribute either with name or sys_id. Example: "requested_by":{"name": "Test User"} or "requested_by": "62826bf03710200044e0bfc8bcbe5df1"
-          # You can specify the assignment_group attribute either with name or sys_id. Example: "assignment_group":{"name": "Change Approval Team"} or "assignment_group": "5f721d93c0a8010e015533746de18bf9"
-          # start_date: This is the planned start date
-          # end_date: This is the planned end date
-   
+          timeout: '3600'
+          interval: '100'
+          changeCreationTimeOut: '3600'
+          abortOnChangeCreationFailure: true
+          abortOnChangeStepTimeout: true
