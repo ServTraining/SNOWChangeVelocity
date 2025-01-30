@@ -48,11 +48,12 @@ jobs:
                   "location": "0141e776db51b1101679c799139619e8",
                   "justification": "This is a sample pipeline script to be added in your change step", 
                   #"risk_impact_analysis": "Update this to work_notes",
-                  "implementation_plan": "Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.",
+                  "implementation_plan": "Software update is tested and results can be found in Test Summaries Tab;",
                   "backout_plan": "When software fails in production, the previous software release will be re-deployed.",
                   "test_plan": "Testing if the software was successfully deployed",
                   "u_communication_plan": "Text here",
                   "u_validation_plan": "Text here"
+                  "name":"name
                 }
               }
           interval: '100'
