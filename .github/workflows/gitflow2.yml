@@ -40,7 +40,7 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           job-name: 'Deploy'
-          change-request: '{"attributes":{"requested_by":{"name": "Test User"},"assignment_group":{"name": "SD_GLOBAL_APSS_SCT TECH"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "2023-09-07 11:59:59","end_date": "2023-09-09 11:59:59"}}'
+          change-request: '{"attributes":{"requested_by":{"name": "Test User"},"assignment_group":{"name": "48156a381ba556101509feeccd4bcb94"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "2023-09-07 11:59:59","end_date": "2023-09-09 11:59:59"}}'
           interval: '100'
           timeout: '3600'
           changeCreationTimeOut: '3600'
