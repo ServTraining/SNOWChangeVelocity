@@ -47,14 +47,6 @@ jobs:
           abortOnChangeCreationFailure: true
           abortOnChangeStepTimeout: true
           #deployment-gate: '{"environment":"deploy-gates-demo","jobName":"ProdDeploy"}'
-          
-       
-
-          interval: '100'
-          timeout: '3600'
-          changeCreationTimeOut: '3600'
-          abortOnChangeCreationFailure: true
-          abortOnChangeStepTimeout: true
 
       - name: Output of Change Creation
         run: echo "change-request-number = ${{ steps.ServiceNowChange.outputs.change-request-number }}" >> $GITHUB_OUTPUT
