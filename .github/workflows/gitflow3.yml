@@ -30,3 +30,14 @@ jobs:
     steps:
       - name: "ProdDeploy"
         run: echo "Hello, ProdDeploy!"
+
+
+      - name: ServiceNow DevOps Get Change
+        uses: ServiceNow/servicenow-devops-get-change@v3.1.0
+        with:
+          devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          context-github: ${{ toJSON(github) }}
+          change-details: ("attributes":{"number":"CHG0063235"}}
+    
