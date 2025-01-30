@@ -39,5 +39,5 @@ jobs:
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
-          change-details: ("attributes":{"number":"CHG0063235"}}
+          change-details: {"attributes":{"number":"CHG0063235"}}
     
