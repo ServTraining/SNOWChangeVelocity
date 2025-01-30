@@ -31,6 +31,7 @@ jobs:
     steps:     
       - name: ServiceNow Change
         uses: ServiceNow/servicenow-devops-change@v4.0.0
+        id: create
         with:
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
@@ -63,3 +64,7 @@ jobs:
 
       - name: Output of Change Creation
         run: echo "change-request-number = ${{ steps.ServiceNowChange.outputs.change-request-number }}" >> $GITHUB_OUTPUT
+
+
+
+        
